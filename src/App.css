@@ -9,3 +9,12 @@
   background-color: black;
   padding: 15px;
 }
+
+.list {
+  padding-left: 10px;
+  border-bottom: 1px solid lightgray;
+}
+
+.list > h4, .list > p {
+  margin : 5px;
+}
