@@ -1,12 +1,13 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 리액트 프로젝트 초기설정 하는 법
+1. 프로젝트 생성할 폴더에 가서 쉬프트 우클릭 => 파워쉘 열기
+2. ```npx create vite```입력 후 엔터
+3. y 입력 후 엔터
+4. 프로젝트명 입력
+5. React 선택
+6. JavaScript 선택
+7. 해당 프로젝트 폴더가 만들어짐
+8. vscode에서 오픈폴더해서 해당 프로젝트 폴더를 열기
+9. 버전 변경 package.json폴더 => react : 18.3.1, react-dom : 18.3.1로 변경
+10. 터미널 열기( Ctrl + ` )
+11. 터미널에 npm install 입력 후 엔터
+12. 잘 되나 확인하기 위해 터미널에 npm run dev 입력 후 엔터
