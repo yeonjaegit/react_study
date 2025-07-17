@@ -10,8 +10,12 @@ function App() {
   const [title, setTitle] = useState('게시판');
   const [boardTitle, setBoardTitle] 
   = useState(['React', 'HTML', 'CSS']);
-  const [like, setLike] = useState(0);
-  const [show, setshow] = useState(true);
+  const [like, setLike] = useState([0, 0, 0]);
+  const [show, setshow] = useState(false);
+  // 몇 번째 게시글을 클릭한지 저장
+  const [titleIndex, setTitleIndex] = useState(0);
+
+  let arr = [1,2,3,4,5];
 
   function change() {
     setLike(like + 1)
@@ -25,18 +29,23 @@ function App() {
       <button onClick={() => {
         setTitle('상품목록')
       }}>제목바꾸기</button>
-      <div className='list'>
-        <h4>{boardTitle[0]}<button onClick={change}>좋아요</button> {like}</h4>
-        <p>2025-07-16</p>
+
+      {boardTitle.map((title, i) => {
+        return (
+      <div className='list' key={i}>
+        <h4 onClick={() => {
+          setshow(!show)
+          setTitleIndex(i)
+
+        }}>{title}<button onClick={(e) => {
+          let _like = [...like]
+          _like[i] += 1
+          setLike(_like)
+          e.stopPropagation();
+        }}>좋아요</button>{like[i]}</h4>
       </div>
-      <div className='list'>
-        <h4>{boardTitle[1]}</h4>
-        <p>2025-07-16</p>
-      </div>
-      <div className='list'>
-        <h4>{boardTitle[2]}</h4>
-        <p>2025-07-16</p>
-      </div>
+        )
+      })}
 
       <button onClick={() => {
         let _boardTitle = [...boardTitle];
@@ -46,7 +55,7 @@ function App() {
       }}>첫 번째 게시물 제목바꾸기</button>
 
       {
-        show ? <Detail /> : ''
+        show ? <Detail titleIndex = {titleIndex} boardTitle = {boardTitle} like = {like} setBoardTitle = {setBoardTitle} /> : ''
       }
 
     </div>
