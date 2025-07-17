@@ -2,33 +2,63 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import Detail from './Detail';
 
 function App() {
-  const [count, setCount] = useState(0)
+  // const [변수명, 변경함수] = useState(초기값);
+  // useXXX : 리액트 내장함수 ( 리액트 훅 )
+  const [title, setTitle] = useState('게시판');
+  const [boardTitle, setBoardTitle] 
+  = useState(['React', 'HTML', 'CSS']);
+  const [like, setLike] = useState([0, 0, 0]);
+  const [show, setshow] = useState(false);
+  // 몇 번째 게시글을 클릭한지 저장
+  const [titleIndex, setTitleIndex] = useState(0);
+
+  let arr = [1,2,3,4,5];
+
+  function change() {
+    setLike(like + 1)
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className='App'>
+      <div className='nav'>
+        <h3>{title}</h3>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <button onClick={() => {
+        setTitle('상품목록')
+      }}>제목바꾸기</button>
+
+      {boardTitle.map((title, i) => {
+        return (
+      <div className='list' key={i}>
+        <h4 onClick={() => {
+          setshow(!show)
+          setTitleIndex(i)
+
+        }}>{title}<button onClick={(e) => {
+          let _like = [...like]
+          _like[i] += 1
+          setLike(_like)
+          e.stopPropagation();
+        }}>좋아요</button>{like[i]}</h4>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+        )
+      })}
+
+      <button onClick={() => {
+        let _boardTitle = [...boardTitle];
+        _boardTitle[0] = 'Java';
+
+        setBoardTitle(_boardTitle)
+      }}>첫 번째 게시물 제목바꾸기</button>
+
+      {
+        show ? <Detail titleIndex = {titleIndex} boardTitle = {boardTitle} like = {like} setBoardTitle = {setBoardTitle} /> : ''
+      }
+
+    </div>
   )
 }
 
